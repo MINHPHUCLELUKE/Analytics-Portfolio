@@ -34,5 +34,5 @@ I'm a data analyst focused on time series forecasting, machine learning, and sta
 
 ## Contact
 
-- **Email:** minhphucshaw123456789@gmail.com
+- **Email:** minhphucle.luke@gmail.com
 - **GitHub:** [MINHPHUCLELUKE](https://github.com/MINHPHUCLELUKE)
