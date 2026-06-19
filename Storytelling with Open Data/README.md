@@ -1,16 +1,16 @@
 # Storytelling with Open Data
 
-Data-driven storytelling using publicly available open data — combining analytical rigour with narrative structure to communicate insights to a general audience rather than a technical one.
+An R Markdown data storytelling project that turns publicly available data into a narrative report for a non-technical audience. Charts are selected and designed to support the story rather than just display the data, and the written analysis explains context, tension, and conclusion — not just numbers.
 
 ---
 
 ## Approach
 
 - Open dataset selection and cleaning in R
-- Exploratory analysis to identify the most compelling story in the data
-- Visualisation design: charts chosen to support the narrative, not just display the data
-- Written narrative woven around the visuals — context, tension, and conclusion
-- Published as an interactive R Markdown report on RPubs
+- Exploratory analysis to find the most meaningful pattern in the data
+- Visualisation design prioritising clarity and narrative fit over comprehensiveness
+- Written commentary integrated with visuals to guide the reader through the story
+- Published as an interactive report on RPubs
 
 ---
 

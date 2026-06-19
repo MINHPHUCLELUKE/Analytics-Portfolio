@@ -1,31 +1,54 @@
 # MedConnect AI — Healthcare Referral Management Platform
 
-A concept and prototype for an AI-assisted platform that streamlines the healthcare referral process — reducing delays, reducing administrative burden on GPs and specialists, and improving patient routing to the right care.
+A fully functional single-page web application prototyping an AI-assisted GP portal for managing patient referrals in the Australian healthcare system. The prototype implements the complete referral lifecycle — from creation to specialist response — with live UI state, patient records, analytics, and secure messaging.
 
 ---
 
-## Problem
+## Platform KPIs (as shown in the prototype)
 
-Healthcare referrals are often slow, paper-heavy, and prone to information loss in transit. GPs manually assess specialist availability, patients fall through gaps in follow-up, and specialists receive incomplete referral notes.
+- 31 active referrals in queue
+- 163 total patients managed
+- 96% AI referral matching accuracy
+- 2.1 days average wait time
+- 14 minutes saved per referral vs manual process
 
 ---
 
-## Solution Design
+## Features Implemented
 
-MedConnect AI proposes an integrated platform with:
-- Smart referral matching: AI triage of referral urgency and specialist fit based on clinical notes
-- Automated status tracking: real-time updates for GP, patient, and specialist
-- Structured referral templates: reducing incomplete referrals and back-and-forth
-- Dashboard view: patient referral pipeline for practice managers
+**Referral management**
+- 4-step referral creation wizard (patient selection → clinical notes → specialist matching → review)
+- AI specialist matching with confidence scores (88–97% per match)
+- Full referral lifecycle: Pending · Approved · Completed · Archived · Draft · Submitted · Declined · Forwarded · Cancelled
+- Auto-escalation and re-routing of overdue referrals
+
+**Patient management**
+- New patient registration flow with Medicare and clinical history fields
+- Detailed patient profiles with conditions, allergies, and referral history
+
+**Analytics dashboard**
+- AI performance metrics, specialty breakdown, monthly volume trends
+- High-risk patient alerts, batch referral optimisation, seasonal pattern detection
+
+**Other**
+- Appointment calendar integration
+- Secure encrypted GP-to-specialist messaging
+- Notification preferences and system integration settings
+
+---
+
+## Australian Healthcare Compliance
+
+Privacy Act 1988 · AHPRA certified · PRODA integration · My Health Record · MedicalDirector (setup required)
 
 ---
 
 ## Tools
 
-`HTML` · `JavaScript` · System design and UX prototyping
+`HTML` · `CSS` · `JavaScript` (no backend — fully client-side prototype)
 
 ---
 
 ## Output
 
-Interactive prototype/report: [`medconnectai.html`](./medconnectai.html)
+Interactive prototype: [`medconnectai.html`](./medconnectai.html)
