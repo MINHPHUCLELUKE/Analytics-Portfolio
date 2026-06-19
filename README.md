@@ -9,7 +9,7 @@ I'm a data analyst focused on time series forecasting, machine learning, and sta
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
 | [CSIRO Data61 — Sector Productivity Report](./CSIRO%20Data61) | Labour Economics | Productivity decomposition, quantile regression, frontier-laggard analysis | R, R Markdown |
-| [Term Deposit Subscription Prediction](./Term-Deposit-Prediction) | Banking / ML | Classification models, feature engineering | R / Python |
+| [Term Deposit Subscription Prediction](./Term-Deposit-Prediction) | Banking / ML | Classification models, feature engineering | Python |
 | [Bitcoin Index Time Series Analysis](./Bitcoin%20Index%20Time%20Series%20Analysis) | Finance | Time series decomposition, ARIMA | R |
 | [Climate-Responsive Time Series Forecasting](./Climate-Responsive%20Time%20Series%20Forecasting) | Climate | Seasonal forecasting, regression with climate covariates | R |
 | [Global CO₂ Concentration — Analysis & Forecasting](./Global%20CO2%20Concentration%20Time%20Series%20Analysis%20and%20Forecasting) | Environment | ARIMA, trend analysis, seasonal decomposition | R |
