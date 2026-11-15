@@ -12,7 +12,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 |---|---|---|---|
 | [The Look Co.: E-commerce Analytics (SQL Server and Power BI)](https://github.com/MINHPHUCLELUKE/thelook-ecommerce-sql-powerbi) | E-commerce / Retail | T-SQL clean layer and star schema, data quality diagnostics, reconciliation checks, 74 DAX measures, like-for-like growth for a partial year, cohort retention, RFM segmentation, web funnel, inventory aging; 4-page report | SQL Server, T-SQL, Power BI, DAX |
 | [Crustline: Pizza Sales Analysis (Power BI)](https://github.com/MINHPHUCLELUKE/crustline-pizza-sales-powerbi) | Food / Retail | Power Query cleaning of a raw CSV, star schema with a many-to-many ingredient bridge, 37 DAX measures, anomaly detection (2 standard deviations), price against volume correlation, order size and timing analysis; 6-page report | Power BI, Power Query, DAX |
-| [CSIRO Data61: Sector Productivity Report](./csiro-data61-sector-productivity)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/csiro-data61-sector-productivity/sample-report-education.html) | Labour Economics | LP decomposition (capital deepening, frontier advancement, diffusion, efficiency), quantile regression (τ=0.90), 34 threshold classifiers | R, R Markdown |
+| [CSIRO Data61: Automated Sector Productivity Reports](./csiro-data61-sector-productivity) | Labour Economics | LP decomposition (capital deepening, frontier advancement, diffusion, efficiency), quantile regression (τ=0.90), 34 threshold classifiers | R, R Markdown |
 
 ---
 
