@@ -12,7 +12,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 |---|---|---|---|
 | [The Look Co.: E-commerce Analytics (SQL Server and Power BI)](https://github.com/MINHPHUCLELUKE/thelook-ecommerce-sql-powerbi) | E-commerce / Retail | T-SQL clean layer and star schema, data quality diagnostics, reconciliation checks, 74 DAX measures, like-for-like growth for a partial year, cohort retention, RFM segmentation, web funnel, inventory aging; 4-page report | SQL Server, T-SQL, Power BI, DAX |
 | [Crustline: Pizza Sales Analysis (Power BI)](https://github.com/MINHPHUCLELUKE/crustline-pizza-sales-powerbi) | Food / Retail | Power Query cleaning of a raw CSV, star schema with a many-to-many ingredient bridge, 37 DAX measures, anomaly detection (2 standard deviations), price against volume correlation, order size and timing analysis; 6-page report | Power BI, Power Query, DAX |
-| [CSIRO Data61: Sector Productivity Report](./CSIRO%20Data61)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/CSIRO%20Data61/all_3page_sector_report_template_complete_combined.html) | Labour Economics | LP decomposition (capital deepening, frontier advancement, diffusion, efficiency), quantile regression (τ=0.90), 34 threshold classifiers | R, R Markdown |
+| [CSIRO Data61: Sector Productivity Report](./csiro-data61-sector-productivity)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/csiro-data61-sector-productivity/sample-report-education.html) | Labour Economics | LP decomposition (capital deepening, frontier advancement, diffusion, efficiency), quantile regression (τ=0.90), 34 threshold classifiers | R, R Markdown |
 
 ---
 
@@ -20,12 +20,12 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
-| [Term Deposit Subscription Prediction](./Term-Deposit-Prediction)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/Term-Deposit-Prediction/Predicting-Term-Deposit-Subscription.html) | Banking / ML | Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (Keras); 5-fold CV; SelectKBest feature selection | Python, scikit-learn, TensorFlow |
-| [Solar Radiation Forecasting & Property Price Correlation](./Solar%20Radiation%20Forecasting%20and%20Property%20Price%20Correlation) | Energy / Real Estate | 8-model ensemble (SARIMA, ARIMAX, HW variants, ETS); prewhitening + CCF to expose spurious correlation | R |
-| [Global CO₂ Concentration: Analysis & Forecasting](./Global%20CO2%20Concentration%20Time%20Series%20Analysis%20and%20Forecasting) | Environment | ARIMA, SARIMA, GARCH; DF-GLS stationarity tests; best: SARIMA(1,2,2)(0,1,1)[12]; 430 ppm threshold forecast | R |
-| [Climate-Responsive Time Series Forecasting](./Climate-Responsive%20Time%20Series%20Forecasting) | Climate / Ecology | Distributed lag models (DLM, ARDL, Koyck, dynlm), ETS, state-space, Millennium Drought intervention analysis across 3 climate tasks | R |
-| [Bitcoin Index Time Series Analysis](./Bitcoin%20Index%20Time%20Series%20Analysis) | Finance | STL decomposition, Box–Cox transformation, ADF/KPSS/PP stationarity tests, EACF, BIC table, ARIMA(1,1,0) selected | R |
-| [Storytelling with Open Data](./Storytelling%20with%20Open%20Data) | Data Visualisation | Narrative-first EDA, visualisation design for non-technical audience, published on RPubs | R, R Markdown |
+| [Term Deposit Subscription Prediction](./term-deposit-prediction)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-notebook.html) | Banking / ML | Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (Keras); 5-fold CV; SelectKBest feature selection | Python, scikit-learn, TensorFlow |
+| [Solar Radiation Forecasting & Property Price Correlation](./solar-radiation-spurious-correlation) | Energy / Real Estate | 8-model ensemble (SARIMA, ARIMAX, HW variants, ETS); prewhitening + CCF to expose spurious correlation | R |
+| [Global CO₂ Concentration: Analysis & Forecasting](./global-co2-forecasting) | Environment | ARIMA, SARIMA, GARCH; DF-GLS stationarity tests; best: SARIMA(1,2,2)(0,1,1)[12]; 430 ppm threshold forecast | R |
+| [Climate-Responsive Time Series Forecasting](./climate-responsive-forecasting) | Climate / Ecology | Distributed lag models (DLM, ARDL, Koyck, dynlm), ETS, state-space, Millennium Drought intervention analysis across 3 climate tasks | R |
+| [Bitcoin Index Time Series Analysis](./bitcoin-index-arima) | Finance | STL decomposition, Box–Cox transformation, ADF/KPSS/PP stationarity tests, EACF, BIC table, ARIMA(1,1,0) selected | R |
+| [Storytelling with Open Data](./storytelling-with-open-data) | Data Visualisation | Narrative-first EDA, visualisation design for non-technical audience, published on RPubs | R, R Markdown |
 
 ---
 
@@ -33,8 +33,8 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
-| [MedConnect AI: Healthcare Referral Prototype](./MedConnect%20AI%20-%20Healthcare%20Referral%20Management%20Platform)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/MedConnect%20AI%20-%20Healthcare%20Referral%20Management%20Platform/medconnectai.html) | Healthcare | Clickable GP portal prototype with illustrative mock data; simulated AI referral matching; complete referral lifecycle; designed around Privacy Act, AHPRA, PRODA and My Health Record requirements | HTML, JavaScript |
-| [Software & System Deconstruction using UML Models](./Software%20%26%20System%20Deconstruction%20using%20UML%20Models) | Systems Analysis | Activity (4 swimlanes), use case, class, and state machine diagrams for Kis Hair Melbourne booking system; cancellation fee gap analysis | UML |
+| [MedConnect AI: Healthcare Referral Prototype](./medconnect-ai-referral-prototype)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/medconnect-ai-referral-prototype/medconnectai.html) | Healthcare | Clickable GP portal prototype with illustrative mock data; simulated AI referral matching; complete referral lifecycle; designed around Privacy Act, AHPRA, PRODA and My Health Record requirements | HTML, JavaScript |
+| [Software & System Deconstruction using UML Models](./uml-booking-system-analysis) | Systems Analysis | Activity (4 swimlanes), use case, class, and state machine diagrams for Kis Hair Melbourne booking system; cancellation fee gap analysis | UML |
 
 ---
 

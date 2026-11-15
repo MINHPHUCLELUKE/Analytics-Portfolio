@@ -39,4 +39,4 @@ UML · Diagramming tools
 
 ## Output
 
-Full report (46 pages): [`Software_System Deconstruction_KIS Booking_Minh Phuc LE.pdf`](./Software_System%20Deconstruction_KIS%20Booking_Minh%20Phuc%20LE.pdf)
+Full report (46 pages): [`uml-booking-system-report.pdf`](./uml-booking-system-report.pdf)
