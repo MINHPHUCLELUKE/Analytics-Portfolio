@@ -20,7 +20,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
-| [Term Deposit Subscription Prediction](./term-deposit-prediction)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-notebook.html) | Banking / ML | Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (Keras); 5-fold CV; SelectKBest feature selection | Python, scikit-learn, TensorFlow |
+| [Term Deposit Subscription Prediction](./term-deposit-prediction)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-revised.html) | Banking / ML | Revised to remove call-duration leakage: 7 models in leak-free scikit-learn pipelines, tuned on ROC AUC with CV; test AUC 0.76; calling the top 20% of scored customers reaches 36% of subscribers (lift 1.8) | Python, scikit-learn |
 | [Solar Radiation Forecasting & Property Price Correlation](./solar-radiation-spurious-correlation) | Energy / Real Estate | 8-model ensemble (SARIMA, ARIMAX, HW variants, ETS); prewhitening + CCF to expose spurious correlation | R |
 | [Global CO₂ Concentration: Analysis & Forecasting](./global-co2-forecasting) | Environment | ARIMA, SARIMA, GARCH; DF-GLS stationarity tests; best: SARIMA(1,2,2)(0,1,1)[12]; 430 ppm threshold forecast | R |
 | [Climate-Responsive Time Series Forecasting](./climate-responsive-forecasting) | Climate / Ecology | Distributed lag models (DLM, ARDL, Koyck, dynlm), ETS, state-space, Millennium Drought intervention analysis across 3 climate tasks | R |
