@@ -8,6 +8,7 @@ Data analyst with a focus on time series forecasting, classification, statistica
 
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
+| [Crustline: Pizza Sales Analysis (Power BI)](https://github.com/MINHPHUCLELUKE/crustline-pizza-sales-powerbi) | Food / Retail | Power Query cleaning of a raw CSV, star schema with a many-to-many ingredient bridge, 37 DAX measures, anomaly detection (2 standard deviations), price against volume correlation, order size and timing analysis; 6-page report | Power BI, Power Query, DAX |
 | [The Look Co.: E-commerce Analytics (SQL Server and Power BI)](https://github.com/MINHPHUCLELUKE/thelook-ecommerce-sql-powerbi) | E-commerce / Retail | T-SQL clean layer and star schema, data quality diagnostics, reconciliation checks, 74 DAX measures, like-for-like growth for a partial year, cohort retention, RFM segmentation, web funnel, inventory aging; 4-page report | SQL Server, T-SQL, Power BI, DAX |
 | [CSIRO Data61 — Sector Productivity Report](./CSIRO%20Data61) | Labour Economics | LP decomposition (capital deepening, frontier advancement, diffusion, efficiency), quantile regression (τ=0.90), 34 threshold classifiers | R, R Markdown |
 | [Term Deposit Subscription Prediction](./Term-Deposit-Prediction) | Banking / ML | Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (Keras); 5-fold CV; SelectKBest feature selection | Python, scikit-learn, TensorFlow |
@@ -23,7 +24,7 @@ Data analyst with a focus on time series forecasting, classification, statistica
 
 ## Skills
 
-**Languages:** R · Python · SQL (T-SQL) · DAX
+**Languages:** R · Python · SQL (T-SQL) · DAX · Power Query (M)
 
 **Time series:** ARIMA · SARIMA · GARCH · ETS · Holt-Winters · Distributed Lag Models (DLM, ARDL, Koyck, dynlm) · STL decomposition · Intervention analysis · Prewhitening / CCF
 
