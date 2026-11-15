@@ -1,6 +1,6 @@
 # Minh Phuc LE — Data Analytics Portfolio
 
-Data analyst with a focus on time series forecasting, classification, and statistical modelling. Work spans financial markets, environmental science, labour economics, healthcare system design, and property analytics.
+Data analyst with a focus on time series forecasting, classification, statistical modelling, and business intelligence reporting. Work spans e-commerce, financial markets, environmental science, labour economics, healthcare system design, and property analytics.
 
 ---
 
@@ -8,6 +8,7 @@ Data analyst with a focus on time series forecasting, classification, and statis
 
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
+| [The Look Co.: E-commerce Analytics (SQL Server and Power BI)](https://github.com/MINHPHUCLELUKE/thelook-ecommerce-sql-powerbi) | E-commerce / Retail | T-SQL clean layer and star schema, data quality diagnostics, reconciliation checks, 74 DAX measures, like-for-like growth for a partial year, cohort retention, RFM segmentation, web funnel, inventory aging; 4-page report | SQL Server, T-SQL, Power BI, DAX |
 | [CSIRO Data61 — Sector Productivity Report](./CSIRO%20Data61) | Labour Economics | LP decomposition (capital deepening, frontier advancement, diffusion, efficiency), quantile regression (τ=0.90), 34 threshold classifiers | R, R Markdown |
 | [Term Deposit Subscription Prediction](./Term-Deposit-Prediction) | Banking / ML | Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (Keras); 5-fold CV; SelectKBest feature selection | Python, scikit-learn, TensorFlow |
 | [Bitcoin Index Time Series Analysis](./Bitcoin%20Index%20Time%20Series%20Analysis) | Finance | STL decomposition, Box–Cox transformation, ADF/KPSS/PP stationarity tests, EACF, BIC table, ARIMA(1,1,0) selected | R |
@@ -22,7 +23,7 @@ Data analyst with a focus on time series forecasting, classification, and statis
 
 ## Skills
 
-**Languages:** R · Python · SQL
+**Languages:** R · Python · SQL (T-SQL) · DAX
 
 **Time series:** ARIMA · SARIMA · GARCH · ETS · Holt-Winters · Distributed Lag Models (DLM, ARDL, Koyck, dynlm) · STL decomposition · Intervention analysis · Prewhitening / CCF
 
@@ -30,9 +31,9 @@ Data analyst with a focus on time series forecasting, classification, and statis
 
 **Statistical methods:** Stationarity testing (ADF, KPSS, PP, DF-GLS) · Quantile regression · Labour productivity decomposition · Spurious correlation detection · Hypothesis testing
 
-**Visualisation & Reporting:** R Markdown · ggplot2 · HTML/JavaScript dashboards · RPubs
+**Visualisation & Reporting:** Power BI · R Markdown · ggplot2 · HTML/JavaScript dashboards · RPubs
 
-**Tools:** Git · RStudio · Jupyter Notebook
+**Tools:** SQL Server (SSMS) · Power BI Desktop · Git · RStudio · Jupyter Notebook
 
 ---
 
