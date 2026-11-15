@@ -1,14 +1,16 @@
 # MedConnect AI — Healthcare Referral Management Platform
 
-A fully functional single-page web application prototyping an AI-assisted GP portal for managing patient referrals in the Australian healthcare system. The prototype implements the complete referral lifecycle — from creation to specialist response — with live UI state, patient records, analytics, and secure messaging.
+A clickable single-page prototype of an AI-assisted GP portal for managing patient referrals in the Australian healthcare system, built for an Information Systems / Business Analysis course. The prototype walks through the complete referral lifecycle, from creation to specialist response, with UI state, patient records, analytics and messaging screens.
+
+> **Prototype only.** There is no backend, no real AI model and no real patient data. Every patient, KPI, accuracy figure and compliance feature in the prototype is illustrative mock content written to demonstrate the design.
 
 ---
 
-## Platform KPIs (as shown in the prototype)
+## Illustrative KPIs shown in the prototype (mock values)
 
 - 31 active referrals in queue
 - 163 total patients managed
-- 96% AI referral matching accuracy
+- 96% AI referral matching accuracy (a placeholder value, not a measured result)
 - 2.1 days average wait time
 - 14 minutes saved per referral vs manual process
 
@@ -18,7 +20,7 @@ A fully functional single-page web application prototyping an AI-assisted GP por
 
 **Referral management**
 - 4-step referral creation wizard (patient selection → clinical notes → specialist matching → review)
-- AI specialist matching with confidence scores (88–97% per match)
+- Simulated AI specialist matching with mock confidence scores (88–97% per match)
 - Full referral lifecycle: Pending · Approved · Completed · Archived · Draft · Submitted · Declined · Forwarded · Cancelled
 - Auto-escalation and re-routing of overdue referrals
 
@@ -37,9 +39,9 @@ A fully functional single-page web application prototyping an AI-assisted GP por
 
 ---
 
-## Australian Healthcare Compliance
+## Australian healthcare context considered in the design
 
-Privacy Act 1988 · AHPRA certified · PRODA integration · My Health Record · MedicalDirector (setup required)
+The design accounts for the Privacy Act 1988, AHPRA practitioner registration, PRODA, My Health Record and MedicalDirector integration. These appear as design requirements and settings screens only: the prototype is not certified, accredited or connected to any of these systems.
 
 ---
 
