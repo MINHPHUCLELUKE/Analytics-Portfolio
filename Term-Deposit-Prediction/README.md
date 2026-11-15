@@ -54,4 +54,6 @@ Customers more likely to subscribe: tertiary education · single marital status 
 
 ## Output
 
+**[View the notebook (live)](https://minhphucleluke.github.io/Analytics-Portfolio/Term-Deposit-Prediction/Predicting-Term-Deposit-Subscription.html)**
+
 Full Jupyter notebook export: [`Predicting-Term-Deposit-Subscription.html`](./Predicting-Term-Deposit-Subscription.html)

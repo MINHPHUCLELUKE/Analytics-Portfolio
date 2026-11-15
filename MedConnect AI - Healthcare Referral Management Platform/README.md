@@ -53,4 +53,6 @@ The design accounts for the Privacy Act 1988, AHPRA practitioner registration, P
 
 ## Output
 
-Interactive prototype: [`medconnectai.html`](./medconnectai.html)
+**[Open the prototype (live)](https://minhphucleluke.github.io/Analytics-Portfolio/MedConnect%20AI%20-%20Healthcare%20Referral%20Management%20Platform/medconnectai.html)**
+
+Interactive prototype file: [`medconnectai.html`](./medconnectai.html)
