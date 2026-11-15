@@ -1,50 +1,31 @@
 # Term Deposit Subscription Prediction
 
-Which bank customers should a call centre phone about a term deposit? Seven classification models are trained on Portuguese bank marketing data (11,162 customers) to rank customers by their chance of subscribing **before** they are called.
+Which bank customers should a call centre phone about a term deposit? Seven classification models are trained on Portuguese bank marketing data (11,162 customers) to rank customers by their chance of subscribing, using only information known **before** the call.
 
-This started as a university group project (three members, shared here by Minh Phuc Le). I later revised it to fix target leakage and other evaluation problems in the original. Both versions are kept so the change is visible.
+Based on a university group project (three members), rebuilt and extended by Minh Phuc Le.
 
-**[View the revised notebook (live)](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-revised.html)** · [Notebook source (`.ipynb`)](./term_deposit_revised.ipynb) · [Original coursework version (live)](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-notebook.html)
+**[View the notebook (live)](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-notebook.html)** · [Notebook source (`.ipynb`)](./term_deposit_prediction.ipynb)
 
 ---
 
 ## Key results (held-out test set, 2,233 customers)
 
-| | Original coursework | Revised (pre-call) |
-|---|---|---|
-| Uses call duration | Yes | **No** |
-| Data | 5,000-row sample | All 11,162 rows |
-| Best model | Random Forest / Logistic Regression | Random Forest |
-| Accuracy | 0.79 | **0.71** |
-| ROC AUC | 0.87 (CV) | **0.76** (test), 0.76 (CV) |
-
-- **The original score was inflated by leakage.** Adding call duration back into the same pipeline lifts test AUC from 0.76 to 0.91 and accuracy from 0.71 to 0.83. But call duration is only known after the call ends, so a model that uses it cannot choose whom to call.
-- **The honest model is still useful.** Ranking customers by the pre-call model and calling the top 20% reaches **36% of all subscribers** with an 86% hit rate, against a 47% base rate (lift 1.8). Calling the top half reaches 71%.
+- **Best model:** Random Forest, test ROC AUC **0.76**, accuracy **0.71**.
+- **Who to call:** ranking customers by the model and calling the top 20% reaches **36% of all subscribers** with an 86% hit rate, against a 47% base rate (lift 1.8). Calling the top half reaches 71%.
 - **What drives it:** month of contact, outcome of the previous campaign, housing loan, age and marital status.
 - **Model choice:** Random Forest beats Logistic Regression by a small but real margin (AUC +0.013 over 10 × 5-fold CV, corrected resampled t-test p < 0.001). Gradient boosting performs about the same as Random Forest.
+- **Why call duration is excluded:** it is the strongest predictor in the data, but it is only known after the call ends. Adding it to the same pipeline would lift test AUC from 0.76 to 0.91 and accuracy from 0.71 to 0.83, a score the bank could never use to choose whom to call.
 
 ---
 
-## What changed from the original, and why
+## Method
 
-| Problem in the original | Why it matters | Fix |
-|---|---|---|
-| `duration` (and features built from it) used as predictors | Leakage: duration is known only after the call, and it largely reflects the outcome | Removed; a "with duration" run is kept only to measure the gap |
-| `SelectKBest` fit on all rows before the train/test split | The test set influenced feature choice | Encoding, scaling, feature selection and model are one scikit-learn `Pipeline`, fit on training folds only |
-| Neural network tuned on test-set accuracy | Optimistic test score | All tuning by 5-fold CV on the training set; test set used once |
-| Grid search optimised accuracy | Accuracy at a 0.5 cut-off is not how calls are allocated | Tuned on ROC AUC; added a gains (lift) table |
-| 5,000-row sample | Discards over half the data | Full 11,162 rows |
-| Plain paired t-test on 5 folds | Overconfident, folds share training data | Nadeau and Bengio corrected resampled t-test on 10 × 5-fold CV |
-
----
-
-## Method (revised notebook)
-
-- **Cleaning (as in Phase 1):** drop `contact`, `day`, `pdays`; merge `poutcome = other` into `failure`.
-- **Split:** 80/20 stratified, seed 42.
-- **Pipeline:** one-hot encoding + standard scaling → `SelectKBest` (k tuned) → classifier.
-- **Models:** Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (scikit-learn MLP, replacing the original Keras model), Gradient Boosting.
-- **Evaluation:** CV AUC, test AUC, accuracy, precision, recall, F1; ROC curves; cumulative gains; permutation importance.
+- **Cleaning:** drop `contact`, `day`, `pdays`; merge `poutcome = other` into `failure`; all 11,162 rows kept.
+- **Split:** 80/20 stratified, seed 42. The test set is used once, at the end.
+- **Pipeline:** one-hot encoding + standard scaling → `SelectKBest` (k tuned) → classifier, all fit on training folds only.
+- **Models:** Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (scikit-learn MLP), Gradient Boosting.
+- **Tuning:** grid search with 5-fold stratified cross-validation, optimising ROC AUC.
+- **Evaluation:** CV AUC, test AUC, accuracy, precision, recall, F1; ROC curves; cumulative gains; permutation importance; Nadeau and Bengio corrected resampled t-test for model comparison.
 
 ## Limitations
 
@@ -57,7 +38,7 @@ This started as a university group project (three members, shared here by Minh P
 
 ```bash
 pip install -r requirements.txt
-jupyter nbconvert --to notebook --execute term_deposit_revised.ipynb   # about 10 minutes on a laptop
+jupyter nbconvert --to notebook --execute term_deposit_prediction.ipynb   # about 10 minutes on a laptop
 ```
 
 ## Data
@@ -68,9 +49,8 @@ jupyter nbconvert --to notebook --execute term_deposit_revised.ipynb   # about 1
 
 | File | Description |
 |---|---|
-| `term_deposit_revised.ipynb` | Revised, leak-free notebook (source) |
-| `term-deposit-revised.html` | Rendered revised notebook |
-| `term-deposit-notebook.html` | Original coursework notebook (kept for comparison) |
+| `term_deposit_prediction.ipynb` | Notebook (source) |
+| `term-deposit-notebook.html` | Rendered notebook |
 | `data/bank.csv` | Dataset |
 | `requirements.txt` | Python packages |
 
