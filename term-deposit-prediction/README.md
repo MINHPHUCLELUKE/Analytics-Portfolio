@@ -2,7 +2,7 @@
 
 MATH2319 Phase 2 group project (Group 28). Six classification models are trained and compared on a stratified sample of Portuguese bank marketing data to predict whether a customer will subscribe to a term deposit after an outbound call campaign.
 
-**Team:** a teammate · Minh Phuc Le · a teammate
+**Team:** group project with three members, shared here by Minh Phuc Le
 
 ---
 
