@@ -12,7 +12,7 @@ Can political prestige and social media attention create lasting value for a cry
 
 ## Key findings
 
-- **Boom, then bust.** $TRUMP opened at $28.93, peaked at $44.28 five days later (market cap $8.8 billion), then fell to $10.38 by 8 June 2025: a 64% loss from launch. $1,000 invested at launch would have been worth $359.
+- **Boom, then bust.** $TRUMP launched on 17 January 2025. Its first daily price was $28.93 (18 January), it peaked at $44.28 on 22 January (market cap $8.8 billion), then fell to $10.38 by 8 June 2025: a 64% loss from that first price. $1,000 invested at that price would have been worth $359.
 - **Far more volatile than established crypto.** The standard deviation of its daily returns was 9.5%, about 3.7 times Bitcoin's (2.6%) and almost twice Solana's (5.2%). It moved more than 20% in a single day on 7 of 142 days.
 - **Ownership is extremely concentrated.** The largest holder controls 80% of the supply and the top 10 holders control 91%, giving a Herfindahl concentration index of 0.64.
 - **It underperformed the market.** Over the same period Bitcoin ended roughly flat (+1.5%) and Solana fell 32%, while $TRUMP fell 64%.

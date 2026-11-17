@@ -11,7 +11,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
 | [The Look Co.: E-commerce Analytics (SQL Server and Power BI)](https://github.com/MINHPHUCLELUKE/thelook-ecommerce-sql-powerbi) | E-commerce / Retail | T-SQL clean layer and star schema, data quality diagnostics, reconciliation checks, 74 DAX measures, like-for-like growth for a partial year, cohort retention, recency and frequency segmentation, web funnel, inventory aging; 4-page report | SQL Server, T-SQL, Power BI, DAX |
-| [Crustline: Pizza Sales Analysis (Power BI)](https://github.com/MINHPHUCLELUKE/crustline-pizza-sales-powerbi) | Food / Retail | Power Query cleaning of a raw CSV, star schema with a many-to-many ingredient bridge, 37 DAX measures, anomaly detection (2 standard deviations), price against volume correlation, order size and timing analysis; 6-page report | Power BI, Power Query, DAX |
+| [Crustline: Pizza Sales Analysis (Power BI)](https://github.com/MINHPHUCLELUKE/crustline-pizza-sales-powerbi) | Food / Retail | Power Query cleaning of a raw CSV, star schema with a snowflaked date table and a many-to-many ingredient bridge, 37 DAX measures, anomaly detection (2 standard deviations), price against volume correlation, order size and timing analysis; 6-page report | Power BI, Power Query, DAX |
 | [CSIRO Data61: Automated Sector Productivity Reports](./csiro-data61-sector-productivity) | Labour Economics | Labour productivity decomposition into five drivers (capital deepening, frontier advancement, equipment diffusion, innovation diffusion, efficiency change), quantile regression frontier (τ = 0.90), rule-based written commentary | R, R Markdown |
 
 ---
