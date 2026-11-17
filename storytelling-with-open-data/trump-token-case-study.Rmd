@@ -235,9 +235,8 @@ Column {data-width=400}
 <div style="background-color: #fff3cd; padding: 15px; border-radius: 10px; border-left: 5px solid #ffc107; font-size: 13px; color: #856404; margin-bottom: 20px; line-height: 1.6;">
   <h4 style="margin-top: 0; font-size: 14px;"> Academic Risk Metrics</h4>
   <ul style="margin: 0 0 10px 0; padding-left: 18px;">
-    <li><strong>Herfindahl Index Equivalent:</strong> `r round((top_holder_pct/100)^2 + sum((holders_df$Percentage[-1]/100)^2, na.rm = TRUE), 3)`</li>
+    <li><strong>Herfindahl index (top holders):</strong> `r round((top_holder_pct/100)^2 + sum((holders_df$Percentage[-1]/100)^2, na.rm = TRUE), 3)`</li>
     <li><strong>Top 10 Concentration:</strong> `r round(top_10_pct, 1)`%</li>
-    <li><strong>Gini Coefficient (est.):</strong> &gt; 0.85 (Extreme inequality)</li>
   </ul>
 
   <h4 style="margin-top: 0; font-size: 14px;"> Statistical Analysis</h4>
@@ -458,7 +457,7 @@ div(
 
 <div style="font-size: 13px; line-height: 1.5; color: #333; margin-top: 5px;">
 <strong>Market Efficiency:</strong><br>
-- Even with presidential association, fundamental market forces dominate causing voltality<br>
+- Even with a presidential association, ordinary market forces dominated and the price was highly volatile<br>
 <strong>Risk-Return Profile:</strong><br>
 - Extreme volatility (`r round(trump_vol, 1)`%) vs established crypto assets<br>
 <strong>Behavioral Finance:</strong> <br>
@@ -471,7 +470,7 @@ div(
   <strong>Regulatory Implications:</strong><br>
   - Celebrity/political tokens face unique regulatory scrutiny<br>
   - High concentration creates manipulation vulnerability<br>
-  - Liquidity patterns suggest institutional absence
+  - Trading volume collapsed after the launch week
 </div>
 
 
@@ -483,12 +482,12 @@ Column {data-width=550}
 
 <div style="font-size: 13px; line-height: 1.5; color: #333;">
   The <strong>$TRUMP</strong> token case study provides quantifiable evidence of extreme risk factors in celebrity/political meme coins:<br>
-  <strong>Statistical Significance:</strong>
+  <strong>Volatility:</strong>
   - Volatility exceeds traditional crypto by factor of `r round(trump_vol/btc_vol, 1)`<br>
   <strong>Market Structure Risk:</strong>
   - Ownership concentration of `r round(top_holder_pct, 1)`% creates manipulation potential<br>
   <strong>Liquidity Analysis:</strong>
-  - Volume inconsistency indicates institutional avoidance
+  - Trading volume peaked in the launch week and stayed far lower afterwards
 </div>
 
 **Investment Decision Framework:**
@@ -550,7 +549,7 @@ div(
 <h4 style="margin-top: 10px;"> Final Assessment </h4>
 
 <div style="font-size: 13px; line-height: 1.5; color: #333;">
-The example of the <strong>$TRUMP</strong> token illustrates that even such an association with a presidential candidate is not enough to neutralize the basic risks of crypto-assets. Its excessive concentration, volatility, and the regulatory uncertainty associated with it cannot make it a part of any ordinary investment portfolio available; rather, it is a specimen to study speculative behavior of assets and market psychology in action.
+The example of the <strong>$TRUMP</strong> token illustrates that even an association with the US President is not enough to neutralize the basic risks of crypto-assets. Its excessive concentration, volatility, and the regulatory uncertainty associated with it cannot make it a part of any ordinary investment portfolio available; rather, it is a specimen to study speculative behavior of assets and market psychology in action.
 </div>
 
 **Data Sources:**

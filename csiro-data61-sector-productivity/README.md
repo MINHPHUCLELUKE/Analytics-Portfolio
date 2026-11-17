@@ -1,6 +1,6 @@
 # CSIRO Data61: Automated Sector Productivity Reports
 
-**Industry partner:** CSIRO Data61, Australia's national science and technology research agency
+**Industry partner:** CSIRO's Data61, the data and digital specialist arm of CSIRO, Australia's national science agency
 
 I built an automated reporting system in R that produces a three-page technology adoption and productivity report for each of the 34 sectors of Vietnam's economy, from firm-level survey data for 2019 to 2023. One parameterised R Markdown template generates every report, with charts, tables and written analysis that adapts to each sector's numbers, so 34 consistent reports come from a single run instead of 34 manual write-ups.
 
@@ -14,14 +14,7 @@ Researchers needed comparable productivity diagnostics for every sector of the e
 
 ## What I built
 
-```mermaid
-flowchart LR
-    A[Firm-level survey panel<br>2019 to 2023] --> B[Cleaning and sector<br>aggregation]
-    B --> C[Productivity decomposition<br>and frontier estimation]
-    C --> D[Threshold rules turn<br>numbers into findings]
-    D --> E[Parameterised R Markdown<br>template]
-    E --> F[Batch render:<br>34 sector reports]
-```
+![Pipeline: firm-level survey data to 34 sector reports](pipeline.png)
 
 - **One template, any sector.** The sector is a parameter. A batch script loads the data once and renders a report for every sector.
 - **Analysis that writes itself.** Each report's commentary is generated from the sector's own results through a set of documented threshold rules: for example whether growth is capital-led or diffusion-led, or whether the main constraint is slow technology diffusion, an innovation capability gap or regional concentration.
@@ -31,14 +24,16 @@ flowchart LR
 
 1. **Sector overview:** revenue and employment trends, ownership structure, firm entry and exit, labour inclusion, and productivity against the all-sector average.
 2. **Technology adoption and innovation:** equipment and innovation investment adoption rates, diffusion levels, and the productivity gap between frontier firms and the rest.
-3. **Labour productivity decomposition:** growth split into capital deepening, frontier advancement, technology diffusion and efficiency change, and the sector classified into a growth regime (capital-led, frontier-led, diffusion-led, efficiency-led or mixed).
+3. **Labour productivity decomposition:** growth split into five drivers (capital deepening, frontier advancement, equipment diffusion, innovation diffusion and efficiency change), and the sector classified into a growth regime (capital-led, frontier-led, diffusion-led, efficiency-led or mixed).
 4. **Policy insights:** the binding constraint for the sector and a closing recommendation that fits its growth regime.
 
 ## Methods
 
-- Labour productivity decomposition into five drivers
-- Quantile regression (90th percentile, natural spline) to estimate the conditional productivity frontier
-- Frontier versus laggard gap analysis (top 3% of firms against the remaining 97%)
+- Labour productivity decomposition into five drivers: capital deepening, frontier advancement, equipment (hard-tech) diffusion, innovation (soft-tech) diffusion and efficiency change
+- Three distinct views of the frontier, each answering a different question:
+  - **Frontier advancement driver:** the technology frontier change term from the project's sector decomposition, which feeds the growth regime classification
+  - **Conditional frontier:** quantile regression (90th percentile, natural spline) of revenue per worker on capital intensity, fitted for 2019 and 2023 to show how far the frontier shifted
+  - **Frontier versus laggard gap:** median productivity of the top 3% of firms against the remaining 97%, showing whether leaders are pulling away
 - Cohort panel analysis of how persistent equipment investment is
 - Rule-based text generation from quantitative thresholds
 - Regional mapping by province

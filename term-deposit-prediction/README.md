@@ -29,6 +29,7 @@ Based on a university group project (three members), rebuilt and extended by Min
 
 ## Limitations
 
+- "Known before the call" needs one caveat. In the source data, `campaign` counts contacts in this campaign including the last one, and `month` is the month of that last contact. The model treats both as known when the call is planned; a stricter set-up would count only earlier contacts (`campaign` minus 1).
 - This Kaggle version of the data is balanced (47% subscribed). The original UCI campaign data has about 11%, so real-world hit rates would be lower, though the ranking and lift logic still apply.
 - There is no cost data. With a cost per call and a value per deposit, the gains table gives the number of customers worth calling.
 

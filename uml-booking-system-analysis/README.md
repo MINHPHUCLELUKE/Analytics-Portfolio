@@ -10,7 +10,7 @@ A business systems analysis of the booking and scheduling app used by Kis Hair M
 
 - **Context:** Australian hair and beauty services is an AUD 7.5 billion industry with more than 33,500 businesses (IBISWorld 2025). Kis Hair has 3 outlets in the Melbourne CBD and moved bookings to a mobile app.
 - **What the app does well:** 24/7 self-service booking, stylist profiles with reviews, real-time slot availability, group bookings, and automated confirmations and reminders.
-- **The gap:** the app cannot take a card on file or charge for late cancellations and no-shows. Salons without such protection see no-show rates of 10 to 30%, which is about AUD 67,000 in lost revenue a year for an average salon (SalonBiz Software 2024). Competing platforms such as Fresha, Treatwell, Booksy, Timely and Square already offer it as standard.
+- **The gap:** the app cannot take a card on file or charge for late cancellations and no-shows. Salons without such protection see no-show rates of 10 to 30% (EasyWeek 2025; Dashboard Beauty 2024), which the report puts at about AUD 67,000 in lost revenue a year for an average salon (SalonBiz Software 2024). Competing platforms such as Fresha, Treatwell, Booksy, Timely and Square already offer it as standard.
 
 ## The UML models
 
