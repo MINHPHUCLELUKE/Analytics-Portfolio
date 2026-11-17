@@ -21,9 +21,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
 | [Term Deposit Subscription Prediction](./term-deposit-prediction)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-notebook.html) | Banking / ML | Pre-call targeting model (call duration excluded): 7 models in scikit-learn pipelines, tuned on ROC AUC with CV; test AUC 0.76; calling the top 20% of scored customers reaches 36% of subscribers (lift 1.8) | Python, scikit-learn |
-| [Solar Radiation Forecasting & Property Price Correlation](./solar-radiation-spurious-correlation) | Energy / Real Estate | 8-model ensemble (SARIMA, ARIMAX, HW variants, ETS); prewhitening + CCF to expose spurious correlation | R |
 | [Global CO₂ Concentration: Analysis & Forecasting](./global-co2-forecasting) | Environment | ARIMA, SARIMA, GARCH; DF-GLS stationarity tests; best: SARIMA(1,2,2)(0,1,1)[12]; 430 ppm threshold forecast | R |
-| [Climate-Responsive Time Series Forecasting](./climate-responsive-forecasting) | Climate / Ecology | Distributed lag models (DLM, ARDL, Koyck, dynlm), ETS, state-space, Millennium Drought intervention analysis across 3 climate tasks | R |
 | [Bitcoin Index Time Series Analysis](./bitcoin-index-arima) | Finance | STL decomposition, Box–Cox transformation, ADF/KPSS/PP stationarity tests, EACF, BIC table, ARIMA(1,1,0) selected | R |
 | [Storytelling with Open Data](./storytelling-with-open-data) | Data Visualisation | Narrative-first EDA, visualisation design for non-technical audience, published on RPubs | R, R Markdown |
 
@@ -44,11 +42,11 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 
 **BI and data modelling:** Star schema design · Data quality diagnostics · Reconciliation checks · Power BI report design · Time intelligence
 
-**Time series:** ARIMA · SARIMA · GARCH · ETS · Holt-Winters · Distributed Lag Models (DLM, ARDL, Koyck, dynlm) · STL decomposition · Intervention analysis · Prewhitening / CCF
+**Time series:** ARIMA · SARIMA · GARCH · STL decomposition · Box–Cox transformation · Model selection (AIC/BIC, EACF)
 
-**Machine learning:** Logistic Regression · KNN · Decision Tree · Random Forest · SVM · Neural Networks (Keras/TensorFlow) · Feature selection · Cross-validation
+**Machine learning:** Logistic Regression · KNN · Decision Tree · Random Forest · SVM · Neural Networks (MLP) · Gradient Boosting · Feature selection · Cross-validation · Gains/lift analysis
 
-**Statistical methods:** Stationarity testing (ADF, KPSS, PP, DF-GLS) · Quantile regression · Labour productivity decomposition · Spurious correlation detection · Hypothesis testing
+**Statistical methods:** Stationarity testing (ADF, KPSS, PP, DF-GLS) · Quantile regression · Labour productivity decomposition · Hypothesis testing
 
 **Visualisation & Reporting:** Power BI · R Markdown · ggplot2 · HTML/JavaScript dashboards · RPubs
 
