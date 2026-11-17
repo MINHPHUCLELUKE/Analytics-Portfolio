@@ -23,7 +23,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 | [Term Deposit Subscription Prediction](./term-deposit-prediction)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-notebook.html) | Banking / ML | Pre-call targeting model (call duration excluded): 7 models in scikit-learn pipelines, tuned on ROC AUC with CV; test AUC 0.76; calling the top 20% of scored customers reaches 36% of subscribers (lift 1.8) | Python, scikit-learn |
 | [Global CO₂ Concentration Time Series Analysis and Forecasting](https://github.com/MINHPHUCLELUKE/time-series-forecasting-r/tree/main/co2)<br>[📄 Read report](https://github.com/MINHPHUCLELUKE/time-series-forecasting-r/blob/main/co2/global-co2-time-series-analysis.pdf) | Environment | Stationarity testing (ADF, KPSS, PP, DF-GLS), second-order and seasonal differencing, 8 SARIMA candidates; selected SARIMA(1,2,2)(0,1,1)[12]; 10-month forecast of 430 ppm, confirmed by NOAA | R |
 | [Bitcoin Index Time Series Analysis](https://github.com/MINHPHUCLELUKE/time-series-forecasting-r/tree/main/bitcoin)<br>[📄 Read report](https://github.com/MINHPHUCLELUKE/time-series-forecasting-r/blob/main/bitcoin/bitcoin-index-time-series-analysis.pdf) | Finance | Box-Cox transformation, ADF/KPSS/PP tests, ACF/PACF, EACF and BIC table, ML and CSS estimation; selected ARIMA(1,1,0) by AIC and BIC | R |
-| [Storytelling with Open Data](./storytelling-with-open-data) | Data Visualisation | Narrative-first EDA, visualisation design for non-technical audience, published on RPubs | R, R Markdown |
+| [A Cautionary Tale: The $TRUMP Token Case Study](./storytelling-with-open-data)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/storytelling-with-open-data/trump-token-dashboard.html) | Data Storytelling / Crypto | Interactive 3-page flexdashboard: price and volume timeline, volatility vs Bitcoin and Solana (3.7x Bitcoin), ownership concentration (top holder 80%), investment scenarios | R, flexdashboard, plotly |
 
 ---
 
@@ -32,7 +32,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
 | [MedConnect AI: Healthcare Referral Prototype](./medconnect-ai-referral-prototype)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/medconnect-ai-referral-prototype/medconnectai.html) | Healthcare | Clickable GP portal prototype with illustrative mock data; simulated AI referral matching; complete referral lifecycle; designed around Privacy Act, AHPRA, PRODA and My Health Record requirements | HTML, JavaScript |
-| [Software & System Deconstruction using UML Models](./uml-booking-system-analysis) | Systems Analysis | Activity (4 swimlanes), use case, class, and state machine diagrams for Kis Hair Melbourne booking system; cancellation fee gap analysis | UML |
+| [Software & System Deconstruction using UML Models](./uml-booking-system-analysis) | Systems Analysis | Activity (4 swimlanes), use case, class, and state machine diagrams for Kis Hair Melbourne booking system; gap analysis and business case for payment authorisation to cut no-show losses; redesigned use case diagrams | UML, Visio |
 
 ---
 

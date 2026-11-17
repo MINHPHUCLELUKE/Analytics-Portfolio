@@ -1,42 +1,55 @@
-# Software & System Deconstruction using UML Models
+# Software and System Deconstruction using UML Models
 
-UML analysis of the real booking and scheduling system used by Kis Hair Melbourne — a multi-outlet CBD hair salon operating on the MaBa platform. The report reverse-engineers the system's architecture, maps the full booking workflow, identifies a functional gap, and proposes a concrete enhancement with quantified business value.
+A business systems analysis of the booking and scheduling app used by Kis Hair Melbourne, a multi-outlet CBD hair salon running on the MaBa platform. The report reverse-engineers how the system works with four UML models, finds a gap that costs the salon revenue, and redesigns the system to close it.
 
----
-
-## System Context
-
-- **Organisation:** Kis Hair Melbourne (3 flagship CBD outlets, incl. Shop 4/250 Spencer Street)
-- **Platform:** MaBa booking system
-- **Industry:** Australian hair and beauty sector — AUD $7.5 billion revenue, 33,500+ businesses
+**[Read the full report (PDF, 46 pages)](./uml-booking-system-report.pdf)**
 
 ---
 
-## UML Diagrams Produced
+## The business problem
 
-- **Activity diagram** — 4 swimlanes: Client · Booking UI · Kis Hair System · Notification Service Provider; maps the full booking flow including decision nodes and confirmation/notification paths
-- **Use case model** — actors (Client, Staff, Admin) and their interactions with system functions
-- **Class diagram** — data structures, relationships, and cardinalities
-- **State machine** — booking object lifecycle from initiated to confirmed/cancelled
+- **Context:** Australian hair and beauty services is an AUD 7.5 billion industry with more than 33,500 businesses (IBISWorld 2025). Kis Hair has 3 outlets in the Melbourne CBD and moved bookings to a mobile app.
+- **What the app does well:** 24/7 self-service booking, stylist profiles with reviews, real-time slot availability, group bookings, and automated confirmations and reminders.
+- **The gap:** the app cannot take a card on file or charge for late cancellations and no-shows. Salons without such protection see no-show rates of 10 to 30%, which is about AUD 67,000 in lost revenue a year for an average salon (SalonBiz Software 2024). Competing platforms such as Fresha, Treatwell, Booksy, Timely and Square already offer it as standard.
 
----
+## The UML models
 
-## Gap Analysis and Proposed Enhancement
+### Activity diagram: how a client books
 
-**Gap identified:** No card-on-file or cancellation fee enforcement mechanism — unlike comparable platforms (Timely, Fresha, Square, Treatwell, Booksy).
+Four swimlanes (Client, Booking UI, Kis Hair System, Notification Service Provider) trace a booking from the first screen to confirmation, including the loops when a client changes the time, stylist or service.
 
-**Proposed solution:** Payment authorisation capture integrated into the booking creation flow, with a configurable cancellation policy window.
+![Activity diagram](figures/01-activity-diagram.png)
 
-**Business case:** Revenue leakage from no-shows; stylist idle time; competitive disadvantage against platforms with built-in late-cancellation fees.
+### Use case diagram: who does what
 
----
+The functions available to five actors (client, member client, senior staff, stylist and the notification service provider), from booking and modifying appointments to profiles, loyalty points and calendar management.
+
+![Use case diagram](figures/02-use-case-diagram.png)
+
+### Class diagram: the data behind the app
+
+Clients, bookings, stylists, services, locations, calendar events, reviews, loyalty points and promotions, with their attributes, operations and cardinalities. For example, one client makes many bookings.
+
+![Class diagram](figures/03-class-diagram.png)
+
+### State machine diagram: the life of a booking
+
+Every state a booking passes through, from selecting a service and stylist, to confirming, amending, cancelling, being served and completed.
+
+![State machine diagram](figures/04-state-machine-diagram.png)
+
+The report also includes an expanded use case for "Book Appointment" with its full step-by-step flow.
+
+## The proposed improvement
+
+**Payment authorisation capture**, built into the booking flow. The client enters card details as the last step before a booking is confirmed. The salon can then set a cancellation policy, process late cancellations and charge no-show fees automatically. The report adds this to two UML models: an updated overall use case diagram (below), with the payment gateway as a new actor, and a new expanded use case for "Capture Payment Authorization".
+
+![Updated use case diagram with payment authorisation](figures/05-updated-use-case-diagram.png)
+
+## Skills shown
+
+Business systems analysis · Requirements and gap analysis · UML (activity, use case, class, state machine) · Business case writing · Competitor benchmarking
 
 ## Tools
 
-UML · Diagramming tools
-
----
-
-## Output
-
-Full report (46 pages): [`uml-booking-system-report.pdf`](./uml-booking-system-report.pdf)
+`UML` · `Microsoft Visio`

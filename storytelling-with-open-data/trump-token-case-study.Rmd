@@ -1,0 +1,560 @@
+---
+title: "A Cautionary Tale: The $TRUMP Token Case Study"
+subtitle: "An Academic Analysis of Meme Coin Risk Factors"
+author: "Minh Phuc Le"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(plotly)
+library(dplyr)
+library(tidyr)
+library(DT)
+library(lubridate)
+library(scales)
+library(readr)
+library(zoo)
+library(htmltools)
+
+# Load the CSV data
+trump_df <- read_csv("$trump price history.csv")
+btc_df <- read_csv("btcusdmax.csv")
+sol_df <- read_csv("solusdmax.csv")
+holders_df <- read_csv("TOP$TRUMPtokenholders.csv")
+
+# Data preprocessing with error handling
+trump_df$date <- as.Date(trump_df$snapped_at)
+btc_df$date <- as.Date(btc_df$snapped_at)
+sol_df$date <- as.Date(sol_df$snapped_at)
+
+# Filter Trump data from launch 
+trump_clean <- trump_df %>% 
+  filter(date >= as.Date("2025-01-17")) %>%
+  arrange(date) %>%
+  mutate(
+    daily_return = (price - lag(price)) / lag(price) * 100,
+    cumulative_return = ((price / first(price)) - 1) * 100,
+    market_cap_billions = market_cap / 1e9,
+    volume_millions = total_volume / 1e6,
+    days_since_launch = as.numeric(date - min(date)) + 1
+  ) %>%
+  filter(!is.na(price), !is.na(total_volume))
+
+# comparative data 
+comparison_start <- min(trump_clean$date)
+comparison_end <- max(trump_clean$date)
+
+btc_period <- btc_df %>% 
+  filter(date >= comparison_start, date <= comparison_end) %>%
+  arrange(date) %>%
+  mutate(
+    daily_return = (price - lag(price)) / lag(price) * 100,
+    cumulative_return = ((price / first(price)) - 1) * 100
+  ) %>%
+  filter(!is.na(price))
+
+sol_period <- sol_df %>% 
+  filter(date >= comparison_start, date <= comparison_end) %>%
+  arrange(date) %>%
+  mutate(
+    daily_return = (price - lag(price)) / lag(price) * 100,
+    cumulative_return = ((price / first(price)) - 1) * 100
+  ) %>%
+  filter(!is.na(price))
+
+# Calculate key metrics
+launch_price <- first(trump_clean$price)
+current_price <- last(trump_clean$price)
+peak_price <- max(trump_clean$price, na.rm = TRUE)
+total_return <- ((current_price - launch_price) / launch_price) * 100
+peak_return <- ((peak_price - launch_price) / launch_price) * 100
+current_mcap <- last(trump_clean$market_cap_billions)
+peak_mcap <- max(trump_clean$market_cap_billions, na.rm = TRUE)
+
+# Volatility calculations
+trump_vol <- sd(trump_clean$daily_return, na.rm = TRUE)
+btc_vol <- sd(btc_period$daily_return, na.rm = TRUE)
+sol_vol <- sd(sol_period$daily_return, na.rm = TRUE)
+
+# Concentration metrics
+top_holder_pct <- holders_df$Percentage[1]
+top_10_pct <- sum(holders_df$Percentage[1:10], na.rm = TRUE)
+
+# Risk events
+extreme_days <- trump_clean %>%
+  filter(abs(daily_return) > 20) %>%
+  nrow()
+
+total_days <- nrow(trump_clean)
+```
+
+# The Launch 
+
+Column {data-width=400 data-height=200}
+-----------------------------------------------------------------------
+
+### **The Story Begins**
+
+<div style="background-color: #d1ecf1; padding: 2px; border-radius: 10px; border-left: 5px solid #17a2b8; margin-bottom: 2px;">
+  <h4 style="color: #0c5460; margin-bottom: 10px; font-size: 15.5px;"> Launch Price:</h4>
+  <p style="font-size: 13.5px; color: #0c5460;">
+    <strong>Price at Launch:</strong> $`r round(launch_price, 2)`<br>
+  </p>
+</div>
+
+<div style="background-color: #d4edda; padding: 2px; border-radius: 10px; border-left: 5px solid #28a745; margin-bottom: 2px;">
+  <h4 style="color: #155724; margin-bottom: 10px; font-size: 15.5px;"> Peak Price</h4>
+  <p style="font-size: 13.5px; color: #155724;">
+    <strong>Peak Price:</strong> $`r round(peak_price, 2)`<br>
+  </p>
+</div>
+
+<div style="background-color: #f8d7da; padding: 2px; border-radius: 10px; border-left: 5px solid #dc3545;">
+  <h4 style="color: #721c24; margin-bottom: 2px;font-size: 15.5px;"> Current Price</h4>
+  <p style="font-size: 13.5px; color: #721c24;">
+    <strong>Current Price:</strong> $`r round(current_price, 2)`<br>
+    <strong>Total Return:</strong> `r ifelse(total_return > 0, "+", "")` `r round(total_return, 1)`% `  /  ` <strong>Days Since Launch:</strong> `r total_days` days
+  </p>
+</div>
+
+
+### **The Initial Promise**
+
+<div style="font-size: 12px; line-height: 1.4; color: #333;">
+On January 17, 2025, the cryptocurrency community experienced something they have never heard of before, the appearance of a meme coin on the market related to Donald Trump, called the <strong>$TRUMP</strong> coin. This case study focuses on what followed next and the reason as to why even tokens associated with a president have excessive risks.<br>
+  <strong>Key Launch Metrics:</strong><br>
+  - Initial market capitalization: $`r round(first(trump_clean$market_cap_billions), 1)` billion<br>
+  - Peak market cap reached: $`r round(peak_mcap, 1)` billion<br>
+  - Time to peak: `r trump_clean$days_since_launch[which.max(trump_clean$price)]` days<br>
+  <strong>The Academic Question:</strong><br>
+  Does the essence of market govern the establishment of a sustainable cryptocurrency value despite the political prestige and social media influence.
+</div>
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### **The Price Journey: A Visual Timeline**
+
+```{r}
+# Enhanced price chart with narrative annotations
+price_plot <- plot_ly(trump_clean, x = ~date, y = ~price, 
+                     type = 'scatter', mode = 'lines',
+                     line = list(color = '#2E86AB', width = 3),
+                     name = '$TRUMP Price',
+                     hovertemplate = paste0(
+                       '<b>Date:</b> %{x}<br>',
+                       '<b>Price:</b> $%{y:.2f}<br>',
+                       '<b>Market Cap:</b> $%{customdata:.1f}B<br>',
+                       '<extra></extra>'
+                     ),
+                     customdata = ~market_cap_billions) %>%
+  layout(
+    title = list(text = "$TRUMP Token: The Complete Price Story", 
+                 font = list(size = 16, family = "Arial, sans-serif")),
+    xaxis = list(title = "Date", 
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    yaxis = list(title = "Price (USD)", 
+                 tickformat = "$,.2f",
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    font = list(family = "Arial, sans-serif"),
+    margin = list(t = 50, l = 60, r = 30, b = 50)
+  )
+
+# Add key event annotations
+peak_date <- trump_clean$date[which.max(trump_clean$price)]
+price_plot <- price_plot %>%
+  add_annotations(
+    x = peak_date, y = peak_price,
+    text = paste0("Peak: $", round(peak_price, 2), "<br>", format(peak_date, "%b %d")),
+    showarrow = TRUE, arrowhead = 2, arrowcolor = "#A23B72",
+    font = list(size = 10, color = "#A23B72"),
+    bgcolor = "rgba(255,255,255,0.8)",
+    bordercolor = "#A23B72", borderwidth = 1
+  ) %>%
+  add_annotations(
+    x = first(trump_clean$date), y = launch_price,
+    text = paste0("Launch: $", round(launch_price, 2)),
+    showarrow = TRUE, arrowhead = 2, arrowcolor = "#F18F01",
+    font = list(size = 10, color = "#F18F01"),
+    bgcolor = "rgba(255,255,255,0.8)",
+    bordercolor = "#F18F01", borderwidth = 1
+  )
+
+price_plot
+```
+
+### **Volume Analysis: The Liquidity Story**
+
+```{r}
+# Volume analysis with academic insights
+volume_plot <- plot_ly(trump_clean, x = ~date, y = ~volume_millions,
+                      type = 'bar',
+                      marker = list(color = '#C73E1D', opacity = 0.7),
+                      name = 'Trading Volume',
+                      hovertemplate = paste0(
+                        '<b>Date:</b> %{x}<br>',
+                        '<b>Volume:</b> $%{y:.1f}M<br>',
+                        '<b>Price:</b> $%{customdata:.2f}<br>',
+                        '<extra></extra>'
+                      ),
+                      customdata = ~price) %>%
+  layout(
+    title = list(text = "Daily Trading Volume: Liquidity Patterns", 
+                 font = list(size = 16, family = "Arial, sans-serif")),
+    xaxis = list(title = "Date", 
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    yaxis = list(title = "Volume (Millions USD)", 
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    font = list(family = "Arial, sans-serif"),
+    margin = list(t = 50, l = 60, r = 30, b = 50)
+  )
+
+volume_plot
+```
+
+# The Reality
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### **Risk Assessment Framework**
+
+<div style="background-color: #fff3cd; padding: 15px; border-radius: 10px; border-left: 5px solid #ffc107; font-size: 13px; color: #856404; margin-bottom: 20px; line-height: 1.6;">
+  <h4 style="margin-top: 0; font-size: 14px;"> Academic Risk Metrics</h4>
+  <ul style="margin: 0 0 10px 0; padding-left: 18px;">
+    <li><strong>Herfindahl Index Equivalent:</strong> `r round((top_holder_pct/100)^2 + sum((holders_df$Percentage[-1]/100)^2, na.rm = TRUE), 3)`</li>
+    <li><strong>Top 10 Concentration:</strong> `r round(top_10_pct, 1)`%</li>
+    <li><strong>Gini Coefficient (est.):</strong> &gt; 0.85 (Extreme inequality)</li>
+  </ul>
+
+  <h4 style="margin-top: 0; font-size: 14px;"> Statistical Analysis</h4>
+  <ul style="margin: 0; padding-left: 18px;">
+    <li><strong>$TRUMP Volatility:</strong> `r round(trump_vol, 1)`% (σ)</li>
+    <li><strong>Bitcoin Multiple:</strong> `r round(trump_vol/btc_vol, 1)`x more volatile</li>
+    <li><strong>Extreme Days:</strong> `r extreme_days` out of `r total_days` (`r round(extreme_days/total_days*100, 1)`%)</li>
+  </ul>
+</div>
+
+
+
+### **Volatility Comparison**
+
+```{r}
+# Academic volatility analysis
+vol_data <- data.frame(
+  Asset = c("$TRUMP", "Solana", "Bitcoin"),
+  Volatility = c(trump_vol, sol_vol, btc_vol),
+  Classification = c("Extreme", "High", "Moderate")
+)
+
+vol_colors <- c("Extreme" = "#C73E1D", "High" = "#F18F01", "Moderate" = "#2E86AB")
+
+vol_plot <- plot_ly(vol_data, x = ~reorder(Asset, -Volatility), y = ~Volatility,
+                   type = 'bar', 
+                   color = ~Classification, colors = vol_colors,
+                   text = ~paste0(round(Volatility, 1), "%"),
+                   textposition = 'inside',
+                   textfont = list(size = 12, color='white'),
+                   hovertemplate = paste0(
+                     '<b>%{x}</b><br>',
+                     'Daily Volatility: %{y:.1f}%<br>',
+                     'Classification: %{customdata}<br>',
+                     '<extra></extra>'
+                   ),
+                   customdata = ~Classification) %>%
+  layout(
+    title = list(text = "Volatility Analysis (Daily Returns)", 
+                 font = list(size = 14, family = "Arial, sans-serif")),
+    xaxis = list(title = "", tickfont = list(size = 11)),
+    yaxis = list(title = "Standard Deviation (%)", 
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    showlegend = FALSE,
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    font = list(family = "Arial, sans-serif"),
+    margin = list(t = 50, l = 60, r = 30, b = 50),
+    height = 300
+  )
+
+vol_plot
+```
+
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### **Comparative Performance Analysis**
+
+```{r}
+# Create comparative returns chart
+comparison_data <- data.frame(
+  date = trump_clean$date,
+  TRUMP = trump_clean$cumulative_return,
+  Bitcoin = btc_period$cumulative_return[match(trump_clean$date, btc_period$date)],
+  Solana = sol_period$cumulative_return[match(trump_clean$date, sol_period$date)]
+) %>%
+  pivot_longer(cols = -date, names_to = "Asset", values_to = "Return") %>%
+  filter(!is.na(Return))
+
+performance_plot <- plot_ly(comparison_data, x = ~date, y = ~Return, 
+                            color = ~Asset, 
+                            colors = c("TRUMP" = "#C73E1D", "Bitcoin" = "#F18F01", "Solana" = "#2E86AB"),
+                            type = 'scatter', mode = 'lines',
+                            line = list(width = 3),
+                            hovertemplate = paste0(
+                              '<b>%{x}</b><br>',
+                              '<b>Asset:</b> %{data.name}<br>',
+                              '<b>Return:</b> %{y:.1f}%<br>',
+                              '<extra></extra>'
+                            )) %>%
+  layout(
+    title = list(text = "Cumulative Returns: Comparative Analysis", 
+                 font = list(size = 14, family = "Arial, sans-serif")),
+    xaxis = list(title = "Date", 
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    yaxis = list(title = "Cumulative Return (%)", 
+                 tickformat = ".1f",
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    font = list(family = "Arial, sans-serif"),
+    margin = list(t = 50, l = 60, r = 30, b = 80),
+    legend = list(x = 0.98, y = 0.98),
+        shapes = list(
+      list(type = "line", 
+           x0 = min(comparison_data$date),
+           x1 = max(comparison_data$date),
+           y0 = 0, y1 = 0,
+           line = list(color = "gray", dash = "dash", width = 1))
+    )
+  )
+
+
+performance_plot
+```
+
+### **Ownership Structure: The Concentration Problem**
+
+```{r}
+# Ownership concentration visualization
+top_20 <- holders_df %>%
+  slice(1:20) %>%
+  mutate(
+    Rank = row_number(),
+    Cumulative = cumsum(Percentage)
+  )
+
+ownership_plot <- plot_ly() %>%
+  add_trace(
+    data = top_20,
+    x = ~Rank, y = ~Cumulative,
+    type = 'scatter', mode = 'lines+markers',
+    line = list(color = '#C73E1D', width = 4),
+    marker = list(color = '#C73E1D', size = 6),
+    name = 'Actual Distribution',
+    hovertemplate = paste0(
+      '<b>Holder Rank:</b> %{x}<br>',
+      '<b>Individual:</b> %{customdata:.1f}%<br>',
+      '<b>Cumulative:</b> %{y:.1f}%<br>',
+      '<extra></extra>'
+    ),
+    customdata = ~Percentage
+  ) %>%
+  add_trace(
+    x = c(1, 20), y = c(5, 100),
+    type = 'scatter', mode = 'lines',
+    line = list(color = 'gray', dash = 'dash', width = 2),
+    name = 'Equal Distribution',
+    hoverinfo = 'skip'
+  ) %>%
+  layout(
+    title = list(text = "Token Ownership Concentration Analysis", 
+                 font = list(size = 14, family = "Arial, sans-serif")),
+    xaxis = list(title = "Holder Rank", 
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    yaxis = list(title = "Cumulative Ownership (%)", 
+                 tickfont = list(size = 11),
+                 titlefont = list(size = 12)),
+    plot_bgcolor = 'rgba(0,0,0,0)',
+    paper_bgcolor = 'rgba(0,0,0,0)',
+    font = list(family = "Arial, sans-serif"),
+    margin = list(t = 50, l = 60, r = 30, b = 50),
+    legend = "bottomright"
+  ) %>%
+  add_annotations(
+    x = 1, y = top_20$Percentage[1],
+    text = paste0("Single holder:<br>", round(top_20$Percentage[1], 1), "%"),
+    showarrow = TRUE, arrowhead = 2, arrowcolor = "#C73E1D",
+    font = list(size = 10, color = "#C73E1D"),
+    bgcolor = "rgba(255,255,255,0.8)",
+    bordercolor = "#C73E1D"
+  )
+
+ownership_plot
+```
+
+# The Lesson 
+
+Column {data-width=500 data-height=800}
+-----------------------------------------------------------------------
+
+### **Investment Scenario Analysis**
+
+```{r}
+# Investment scenarios table
+scenarios <- data.frame(
+  Investment = c("$1,000", "$5,000", "$10,000"),
+  At_Peak = paste0(
+    "$", format(round(c(1000, 5000, 10000) * (1 + peak_return / 100)), big.mark = ",")
+  ),
+  Current_Value = paste0(
+    "$", format(round(c(1000, 5000, 10000) * (1 + total_return / 100)), big.mark = ",")
+  ),
+  Peak_Gain_Loss = paste0(
+    ifelse(peak_return > 0, "+$", "-$"),
+    format(round(abs(c(1000, 5000, 10000) * peak_return / 100)), big.mark = ",")
+  ),
+  Current_Gain_Loss = paste0(
+    ifelse(total_return > 0, "+$", "-$"),
+    format(round(abs(c(1000, 5000, 10000) * total_return / 100)), big.mark = ",")
+  )
+)
+
+div(
+  tags$style(HTML("
+    table.dataTable thead th {
+      font-size: 11px;
+      text-align: center;
+    }
+  ")),
+  DT::datatable(scenarios,
+                options = list(dom = 't', pageLength = 10, scrollX = TRUE),
+                colnames = c('Initial Investment', 'Peak Value', 'Current Value', 'Peak Gain/Loss', 'Current Gain/Loss'),
+                caption = "Hypothetical Investment Scenarios",
+                class = 'compact stripe') %>%
+    DT::formatStyle(columns = 1:5, fontSize = '12px', textAlign = 'center')
+)
+
+```
+
+<h4 style="margin-top: 20px;"> Academic Learning Framework</h4>
+
+<div style="font-size: 13px; line-height: 1.5; color: #333; margin-top: 5px;">
+<strong>Market Efficiency:</strong><br>
+- Even with presidential association, fundamental market forces dominate causing voltality<br>
+<strong>Risk-Return Profile:</strong><br>
+- Extreme volatility (`r round(trump_vol, 1)`%) vs established crypto assets<br>
+<strong>Behavioral Finance:</strong> <br>
+- Initial euphoria followed by reality-based correction<br>
+<strong>Quantitative Findings:</strong><br>
+  - <strong>Concentration Risk:</strong> `r round(top_holder_pct, 1)`% single holder concentration<br>
+  - <strong>Volatility Premium:</strong> `r round(trump_vol/btc_vol, 1)`x Bitcoin volatility<br>
+  - <strong>Extreme Events:</strong> `r round(extreme_days/total_days*100, 1)`% of trading days<br>
+
+  <strong>Regulatory Implications:</strong><br>
+  - Celebrity/political tokens face unique regulatory scrutiny<br>
+  - High concentration creates manipulation vulnerability<br>
+  - Liquidity patterns suggest institutional absence
+</div>
+
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### **Academic Conclusions & Investment Framework**
+<h4 style="margin-top: 0px;"> Empirical Evidence Summary:</h4>
+
+<div style="font-size: 13px; line-height: 1.5; color: #333;">
+  The <strong>$TRUMP</strong> token case study provides quantifiable evidence of extreme risk factors in celebrity/political meme coins:<br>
+  <strong>Statistical Significance:</strong>
+  - Volatility exceeds traditional crypto by factor of `r round(trump_vol/btc_vol, 1)`<br>
+  <strong>Market Structure Risk:</strong>
+  - Ownership concentration of `r round(top_holder_pct, 1)`% creates manipulation potential<br>
+  <strong>Liquidity Analysis:</strong>
+  - Volume inconsistency indicates institutional avoidance
+</div>
+
+**Investment Decision Framework:**
+
+```{r}
+# Investment suitability framework
+suitability_data <- data.frame(
+  Investor_Profile = c("Conservative", "Moderate", "Aggressive", "Speculative"),
+  Tolerance = c("Low", "Medium", "High", "Very High"),
+  Allocation = c("0%", "0%", "0.5-1%", "2-5%"),
+  Suitability = c("Not Suitable", "Not Suitable", "Extreme Caution", "Consider"),
+  Rationale = c(
+    "Exceeds risk parameters",
+    "Volatility incompatible", 
+    "Only with stop-losses",
+    "Speculation component only"
+  )
+)
+
+div(
+  tags$style(HTML("
+    table.dataTable thead th {
+      font-size: 11px;
+      text-align: center;
+    }
+    .dataTables_wrapper {
+      overflow-y: visible !important;
+    }
+  ")),
+  
+  DT::datatable(
+    suitability_data,
+    options = list(
+      dom = 't',
+      pageLength = 15,
+      scrollX = TRUE,
+      scrollY = FALSE  # Important: disables vertical scroll
+    ),
+    caption = "Investment Suitability by Risk Profile",
+    class = 'compact stripe',
+    rownames = FALSE
+  ) %>%
+    DT::formatStyle(
+      'Suitability',
+      backgroundColor = DT::styleEqual(
+        c('Not Suitable', 'Extreme Caution', 'Consider'),
+        c('#ffebee', '#fff3e0', '#e8f5e8')
+      )
+    ) %>%
+    DT::formatStyle(
+      columns = 1:5,
+      fontSize = '11px',
+      textAlign = 'center'
+    )
+)
+
+
+```
+<h4 style="margin-top: 10px;"> Final Assessment </h4>
+
+<div style="font-size: 13px; line-height: 1.5; color: #333;">
+The example of the <strong>$TRUMP</strong> token illustrates that even such an association with a presidential candidate is not enough to neutralize the basic risks of crypto-assets. Its excessive concentration, volatility, and the regulatory uncertainty associated with it cannot make it a part of any ordinary investment portfolio available; rather, it is a specimen to study speculative behavior of assets and market psychology in action.
+</div>
+
+**Data Sources:**
+
+The data used for this dashboard was retrieved on CoinGecko and Solscan
+
+
