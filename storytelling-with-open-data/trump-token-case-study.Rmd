@@ -91,6 +91,7 @@ extreme_days <- trump_clean %>%
   nrow()
 
 total_days <- nrow(trump_clean)
+return_days <- sum(!is.na(trump_clean$daily_return))  # the first day has no return
 ```
 
 # The Launch 
@@ -243,7 +244,7 @@ Column {data-width=400}
   <ul style="margin: 0; padding-left: 18px;">
     <li><strong>$TRUMP Volatility:</strong> `r round(trump_vol, 1)`% (σ)</li>
     <li><strong>Bitcoin Multiple:</strong> `r round(trump_vol/btc_vol, 1)`x more volatile</li>
-    <li><strong>Extreme Days:</strong> `r extreme_days` out of `r total_days` (`r round(extreme_days/total_days*100, 1)`%)</li>
+    <li><strong>Extreme Days:</strong> `r extreme_days` out of `r return_days` daily returns (`r sprintf("%.1f", extreme_days/return_days*100)`%)</li>
   </ul>
 </div>
 
@@ -465,7 +466,7 @@ div(
 <strong>Quantitative Findings:</strong><br>
   - <strong>Concentration Risk:</strong> `r round(top_holder_pct, 1)`% single holder concentration<br>
   - <strong>Volatility Premium:</strong> `r round(trump_vol/btc_vol, 1)`x Bitcoin volatility<br>
-  - <strong>Extreme Events:</strong> `r round(extreme_days/total_days*100, 1)`% of trading days<br>
+  - <strong>Extreme Events:</strong> `r sprintf("%.1f", extreme_days/return_days*100)`% of daily returns<br>
 
   <strong>Regulatory Implications:</strong><br>
   - Celebrity/political tokens face unique regulatory scrutiny<br>
