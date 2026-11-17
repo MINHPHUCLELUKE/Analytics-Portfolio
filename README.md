@@ -21,8 +21,8 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 | Project | Domain | Methods | Tools |
 |---|---|---|---|
 | [Term Deposit Subscription Prediction](./term-deposit-prediction)<br>[▶ View live](https://minhphucleluke.github.io/Analytics-Portfolio/term-deposit-prediction/term-deposit-notebook.html) | Banking / ML | Pre-call targeting model (call duration excluded): 7 models in scikit-learn pipelines, tuned on ROC AUC with CV; test AUC 0.76; calling the top 20% of scored customers reaches 36% of subscribers (lift 1.8) | Python, scikit-learn |
-| [Global CO₂ Concentration: Analysis & Forecasting](./global-co2-forecasting) | Environment | ARIMA, SARIMA, GARCH; DF-GLS stationarity tests; best: SARIMA(1,2,2)(0,1,1)[12]; 430 ppm threshold forecast | R |
-| [Bitcoin Index Time Series Analysis](./bitcoin-index-arima) | Finance | STL decomposition, Box–Cox transformation, ADF/KPSS/PP stationarity tests, EACF, BIC table, ARIMA(1,1,0) selected | R |
+| [Global CO₂: SARIMA Forecast Checked Against Reality](https://github.com/MINHPHUCLELUKE/time-series-forecasting-r/tree/main/co2)<br>[▶ View live](https://minhphucleluke.github.io/time-series-forecasting-r/co2/co2-forecasting-report.html) | Environment | SARIMA vs ETS and seasonal naive on a 24-month holdout; April 2025 forecast compared with 17 months of later NOAA readings (all inside the 95% band, but drifting high) | R |
+| [Bitcoin Index: Does ARIMA Beat a Random Walk?](https://github.com/MINHPHUCLELUKE/time-series-forecasting-r/tree/main/bitcoin)<br>[▶ View live](https://minhphucleluke.github.io/time-series-forecasting-r/bitcoin/bitcoin-forecasting-report.html) | Finance | ARIMA vs random walk on a 24-month holdout (rolling and multi-step), Diebold-Mariano test, GARCH vs constant variance, 12-month fan chart | R |
 | [Storytelling with Open Data](./storytelling-with-open-data) | Data Visualisation | Narrative-first EDA, visualisation design for non-technical audience, published on RPubs | R, R Markdown |
 
 ---
@@ -42,7 +42,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 
 **BI and data modelling:** Star schema design · Data quality diagnostics · Reconciliation checks · Power BI report design · Time intelligence
 
-**Time series:** ARIMA · SARIMA · GARCH · STL decomposition · Box–Cox transformation · Model selection (AIC/BIC, EACF)
+**Time series:** ARIMA · SARIMA · GARCH · STL decomposition · Box–Cox transformation · Model selection (AIC/BIC, EACF) · Out-of-sample testing against naive benchmarks · Diebold-Mariano test
 
 **Machine learning:** Logistic Regression · KNN · Decision Tree · Random Forest · SVM · Neural Networks (MLP) · Gradient Boosting · Feature selection · Cross-validation · Gains/lift analysis
 
