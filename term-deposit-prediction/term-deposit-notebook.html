@@ -9212,7 +9212,7 @@ Mean difference +0.013, corrected t = 4.21, p = 0.0001
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Limitations">Limitations<a class="anchor-link" href="#Limitations">¶</a></h3><ul>
 <li><strong>This dataset is balanced (47% subscribed).</strong> The original UCI campaign data has a subscription rate of about 11%, so this Kaggle version was resampled. Absolute hit rates would be much lower in a real campaign; the ranking and lift logic still apply.</li>
-<li><strong><code>campaign</code> and <code>previous</code></strong> count contacts made so far, which are known when the next call is planned, so they are kept. <code>month</code> is the month of the last contact and is also known at planning time.</li>
+<li><strong><code>campaign</code>, <code>previous</code> and <code>month</code>.</strong> <code>previous</code> counts contacts before this campaign. In the source data, <code>campaign</code> counts contacts in this campaign including the last one, and <code>month</code> is the month of that last contact. The model treats both as known when the call is planned; a stricter set-up would count only earlier contacts (<code>campaign</code> minus 1).</li>
 <li><strong>No cost data.</strong> With a cost per call and a value per deposit, the gains table converts directly into the number of customers worth calling.</li>
 </ul>
 </div>
