@@ -22,7 +22,7 @@ Based on a university group project (three members), rebuilt and extended by Min
 
 - **Cleaning:** drop `contact`, `day`, `pdays`; merge `poutcome = other` into `failure`; all 11,162 rows kept.
 - **Split:** 80/20 stratified, seed 42. The test set is used once, at the end.
-- **Pipeline:** one-hot encoding + standard scaling → `SelectKBest` (k tuned) → classifier, all fit on training folds only.
+- **Pipeline:** one-hot encoding + standard scaling → `SelectKBest` (k tuned; cross-validation kept all features for every model) → classifier, all fit on training folds only.
 - **Models:** Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Neural Network (scikit-learn MLP), Gradient Boosting.
 - **Tuning:** grid search with 5-fold stratified cross-validation, optimising ROC AUC.
 - **Evaluation:** CV AUC, test AUC, accuracy, precision, recall, F1; ROC curves; cumulative gains; permutation importance; Nadeau and Bengio corrected resampled t-test for model comparison.
