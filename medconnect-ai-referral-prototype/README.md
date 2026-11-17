@@ -1,58 +1,39 @@
-# MedConnect AI — Healthcare Referral Management Platform
+# MedConnect AI: Healthcare Referral Prototype
 
-A clickable single-page prototype of an AI-assisted GP portal for managing patient referrals in the Australian healthcare system, built for an Information Systems / Business Analysis course. The prototype walks through the complete referral lifecycle, from creation to specialist response, with UI state, patient records, analytics and messaging screens.
+A clickable prototype of a GP portal for managing patient referrals to specialists in the Australian healthcare system, built for an Information Systems and Business Analysis course. It walks through the full referral lifecycle, from a GP creating a referral to the specialist's response, across dashboard, referral, patient, calendar, analytics and messaging screens.
 
-> **Prototype only.** There is no backend, no real AI model and no real patient data. Every patient, KPI, accuracy figure and compliance feature in the prototype is illustrative mock content written to demonstrate the design.
+**[Open the prototype (live)](https://minhphucleluke.github.io/Analytics-Portfolio/medconnect-ai-referral-prototype/medconnectai.html)** · [Prototype file](./medconnectai.html)
 
----
+> **Prototype only.** There is no backend, no real AI model and no real patient data. Every patient, KPI, accuracy figure and compliance feature shown is illustrative mock content written to demonstrate the design. On the live page, any email and password signs you in.
 
-## Illustrative KPIs shown in the prototype (mock values)
+![GP dashboard with prioritised tasks](figures/01-dashboard.png)
 
-- 31 active referrals in queue
-- 163 total patients managed
-- 96% AI referral matching accuracy (a placeholder value, not a measured result)
-- 2.1 days average wait time
-- 14 minutes saved per referral vs manual process
+## The problem it addresses
 
----
+GP referrals often stall: specialists ask for missing history, responses go overdue, and patients wait without anyone noticing. The prototype puts the GP's open referral work in one place, sorted by urgency, and makes overdue cases visible so they can be escalated or sent to another specialist.
 
-## Features Implemented
+## What the prototype shows
 
-**Referral management**
-- 4-step referral creation wizard (patient selection → clinical notes → specialist matching → review)
-- Simulated AI specialist matching with mock confidence scores (88–97% per match)
-- Full referral lifecycle: Pending · Approved · Completed · Archived · Draft · Submitted · Declined · Forwarded · Cancelled
-- Auto-escalation and re-routing of overdue referrals
+**Dashboard.** Tasks that need the GP's action, colour-coded by priority (for example a specialist asking for more patient history, or test results waiting for review), plus an alert for an overdue specialist response with an escalate-and-reroute action.
 
-**Patient management**
-- New patient registration flow with Medicare and clinical history fields
-- Detailed patient profiles with conditions, allergies, and referral history
+**Referral management.** Every referral with its condition, specialist, priority and status, filterable across the full lifecycle: pending, approved, submitted, forwarded, declined, completed, cancelled and archived.
 
-**Analytics dashboard**
-- AI performance metrics, specialty breakdown, monthly volume trends
-- High-risk patient alerts, batch referral optimisation, seasonal pattern detection
+![Referral management](figures/02-referral-management.png)
 
-**Other**
-- Appointment calendar integration
-- Secure encrypted GP-to-specialist messaging
-- Notification preferences and system integration settings
+**New referral wizard.** A four-step flow (patient, clinical details, specialist, review) with simulated AI help that suggests a matching specialist and a confidence score.
 
----
+![Create new referral wizard](figures/03-new-referral.png)
 
-## Australian healthcare context considered in the design
+**Patient records.** Patient profiles with personal and medical information, referral history, and shortcuts to edit the record or start a referral.
+
+![Patient record](figures/04-patient-record.png)
+
+**Also included:** an appointment calendar, GP-to-specialist messaging, a practice analytics page, and profile, notification and integration settings.
+
+## Australian healthcare context in the design
 
 The design accounts for the Privacy Act 1988, AHPRA practitioner registration, PRODA, My Health Record and MedicalDirector integration. These appear as design requirements and settings screens only: the prototype is not certified, accredited or connected to any of these systems.
 
----
-
 ## Tools
 
-`HTML` · `CSS` · `JavaScript` (no backend — fully client-side prototype)
-
----
-
-## Output
-
-**[Open the prototype (live)](https://minhphucleluke.github.io/Analytics-Portfolio/medconnect-ai-referral-prototype/medconnectai.html)**
-
-Interactive prototype file: [`medconnectai.html`](./medconnectai.html)
+`HTML` · `CSS` · `JavaScript` (fully client-side, no backend)
