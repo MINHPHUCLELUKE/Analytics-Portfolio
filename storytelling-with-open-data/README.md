@@ -2,7 +2,7 @@
 
 An interactive data story, built as an R flexdashboard, on why even a meme coin tied to the US President carries extreme investment risk. It follows the $TRUMP token from its launch on 17 January 2025 to 8 June 2025 (142 days) and compares it with Bitcoin and Solana over the same period.
 
-**[Open the interactive dashboard (live)](https://minhphucleluke.github.io/Analytics-Portfolio/storytelling-with-open-data/trump-token-dashboard.html)** · [R Markdown source](./trump-token-case-study.Rmd) · [Published version on RPubs](https://rpubs.com/minhphucleluke/1323425)
+**[Open the interactive dashboard (live)](https://minhphucleluke.github.io/Analytics-Portfolio/storytelling-with-open-data/trump-token-dashboard.html)** · [R Markdown source](./trump-token-case-study.Rmd)
 
 ![The Launch page](figures/01-the-launch.png)
 

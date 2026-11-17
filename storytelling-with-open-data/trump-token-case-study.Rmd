@@ -102,9 +102,9 @@ Column {data-width=400 data-height=200}
 ### **The Story Begins**
 
 <div style="background-color: #d1ecf1; padding: 2px; border-radius: 10px; border-left: 5px solid #17a2b8; margin-bottom: 2px;">
-  <h4 style="color: #0c5460; margin-bottom: 10px; font-size: 15.5px;"> Launch Price:</h4>
+  <h4 style="color: #0c5460; margin-bottom: 10px; font-size: 15.5px;"> First Daily Price:</h4>
   <p style="font-size: 13.5px; color: #0c5460;">
-    <strong>Price at Launch:</strong> $`r round(launch_price, 2)`<br>
+    <strong>18 January 2025 (launched 17 January):</strong> $`r round(launch_price, 2)`<br>
   </p>
 </div>
 
@@ -183,7 +183,7 @@ price_plot <- price_plot %>%
   ) %>%
   add_annotations(
     x = first(trump_clean$date), y = launch_price,
-    text = paste0("Launch: $", round(launch_price, 2)),
+    text = paste0("First daily price: $", round(launch_price, 2)),
     showarrow = TRUE, arrowhead = 2, arrowcolor = "#F18F01",
     font = list(size = 10, color = "#F18F01"),
     bgcolor = "rgba(255,255,255,0.8)",
@@ -484,7 +484,7 @@ Column {data-width=550}
 <div style="font-size: 13px; line-height: 1.5; color: #333;">
   The <strong>$TRUMP</strong> token case study provides quantifiable evidence of extreme risk factors in celebrity/political meme coins:<br>
   <strong>Volatility:</strong>
-  - Volatility exceeds traditional crypto by factor of `r round(trump_vol/btc_vol, 1)`<br>
+  - Volatility is `r round(trump_vol/btc_vol, 1)` times Bitcoin's and `r round(trump_vol/sol_vol, 1)` times Solana's<br>
   <strong>Market Structure Risk:</strong>
   - Ownership concentration of `r round(top_holder_pct, 1)`% creates manipulation potential<br>
   <strong>Liquidity Analysis:</strong>

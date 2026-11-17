@@ -48,7 +48,7 @@ Projects are grouped below: business intelligence first, then statistics, foreca
 
 **Statistical methods:** Stationarity testing (ADF, KPSS, PP, DF-GLS) · Quantile regression · Labour productivity decomposition · Hypothesis testing
 
-**Visualisation & Reporting:** Power BI · R Markdown · ggplot2 · HTML/JavaScript dashboards · RPubs
+**Visualisation & Reporting:** Power BI · R Markdown · ggplot2 · HTML/JavaScript dashboards
 
 **Tools:** SQL Server (SSMS) · Power BI Desktop · Git · RStudio · Jupyter Notebook
 
