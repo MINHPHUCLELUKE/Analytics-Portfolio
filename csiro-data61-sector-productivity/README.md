@@ -1,10 +1,26 @@
 # CSIRO Data61: Automated Sector Productivity Reports
 
-**Industry partner:** CSIRO's Data61, the data and digital specialist arm of CSIRO, Australia's national science agency
+**Industry partner:** CSIRO's Data61, under the Aus4Innovation programme with Vietnam's Ministry of Science and Technology
+
+**My role:** I led the reporting template and its rule-based commentary in a team of four.
 
 I built an automated reporting system in R that produces a three-page technology adoption and productivity report for each of the 34 sectors of Vietnam's economy, from firm-level survey data for 2019 to 2023. One parameterised R Markdown template generates every report, with charts, tables and written analysis that adapts to each sector's numbers, so 34 consistent reports come from a single run instead of 34 manual write-ups.
 
 > **About this page.** The code, data and rendered reports belong to the research project and are confidential, so they are not shared here. This page describes the work and the methods.
+
+---
+
+## Key findings
+
+The analysis of 4.17 million firm records across 34 sectors, 2019 to 2023, surfaced these headline results:
+
+- **108x productivity gap** between the most and least productive sectors, measured as real output per worker (Petroleum at 46,347 vs Textile at 428 million real 2019 VND per worker). Textile employs about 3 million workers, roughly one in five of Vietnam's manufacturing workforce.
+- **67.6x within-sector gap** in Wholesale and Retail: the top 3% of firms against the remaining 97%, up from 50.9x in 2019. Wholesale and Retail accounts for 28% of total survey revenue.
+- **Growth decomposition across all sectors:** 48.3% of aggregate productivity growth came from capital deepening, 33.1% from frontier advancement, 11.6% from equipment diffusion and 7.0% from efficiency change.
+- **Equipment investment per worker** fell from index 23.8 to 7.9 between 2019 and 2023, declining in 28 of 34 sectors.
+- The 2023 within-sector productivity gap ranged from 15.1x to 119.5x across sectors.
+
+The findings and policy recommendations were presented to the CSIRO Data61 team and form part of the project's deliverables under the Aus4Innovation programme.
 
 ---
 
@@ -13,8 +29,6 @@ I built an automated reporting system in R that produces a three-page technology
 Researchers needed comparable productivity diagnostics for every sector of the economy: how each sector is growing, how fast it adopts technology, how far its typical firms trail the leaders, and what is holding it back. Writing that by hand for 34 sectors is slow, hard to keep consistent, and has to be redone whenever the data is updated.
 
 ## What I built
-
-![Pipeline: firm-level survey data to 34 sector reports](pipeline.png)
 
 - **One template, any sector.** The sector is a parameter. A batch script loads the data once and renders a report for every sector.
 - **Analysis that writes itself.** Each report's commentary is generated from the sector's own results through a set of documented threshold rules: for example whether growth is capital-led or diffusion-led, or whether the main constraint is slow technology diffusion, an innovation capability gap or regional concentration.
